@@ -1,4 +1,5 @@
 <?php
+$nome = isset($nome) ? $nome : '';
 echo '
 <br><br>
 '.$nome.'

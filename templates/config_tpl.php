@@ -1,6 +1,6 @@
 <br><br>
 <strong>
-<?php echo $msg; ?>
+<?php if(isset($msg)) echo $msg; ?>
 </strong>
 <br><br>
 <form method="post">
