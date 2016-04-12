@@ -20,8 +20,6 @@ function lfabm_diploma_authentication_install(){
 
 	global $wpdb;
 
-	$charset_collate = $wpdb->get_charset_collate();
-
 	$wpdb->query("	CREATE TABLE wp_lfabm_diploma (
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
@@ -100,6 +98,7 @@ function cria_shortcode($codigo){
 	return ob_get_clean();
 }
 
+//executa a função que gera a tela de validação do diploma quando encontrar o shortcode passado como primeiro parâmetro na função add_shortcode
 add_shortcode( 'lfabm_diploma_authentication_form', 'cria_shortcode' );
 
 register_deactivation_hook( __FILE__ , 'lfabm_diploma_authentication_uninstall');
@@ -157,11 +156,11 @@ function lfabm_diploma_authentication_uninstall(){
 	$page_title = get_option( "lfabm_diploma_authentication_page_title" );
 	$page_name = get_option( "lfabm_diploma_authentication_page_name" );
 
-	//  the id of our page...
+	// recupera o id da página do plugin
 	$page_id = get_option( 'lfabm_diploma_authentication_page_id' );
 	if( $page_id ) {
 
-		wp_delete_post( $page_id ); // this will trash, not delete
+		wp_delete_post( $page_id ); // coloca a página na lixeira
 
 	}
 
